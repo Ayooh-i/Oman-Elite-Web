@@ -1,0 +1,618 @@
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================= */
+:root {
+  --primary-green: #0e4d38; /* Deep Emerald */
+  --accent-gold: #c5a059; /* Matte Gold */
+  --bg-cream: #f9f7f2; /* Luxury Off-White */
+  --text-charcoal: #1a1a1a; /* High Contrast Text */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Montserrat", sans-serif;
+
+  /* Dark Mode Variables */
+  --bg-dark: #051f16;
+  --text-light: #f0f0f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-cream);
+  color: var(--text-charcoal);
+  line-height: 1.6;
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION
+   ========================================= */
+header {
+  background-color: var(--primary-green);
+  padding: 1rem 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+/* FIX: Logo - Removed Border for Cleaner Look */
+.logo-img {
+  height: 65px;
+  width: auto;
+  padding: 2px;
+  transition: transform 0.3s ease;
+  /* Removed border and background so it floats transparently */
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.5));
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-gold);
+}
+
+/* Dark Mode Button */
+.theme-btn {
+  background: transparent;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.theme-btn:hover {
+  background: var(--accent-gold);
+  color: var(--primary-green);
+}
+
+/* =========================================
+   3. HOME PAGE (Hero & Intro)
+   ========================================= */
+.hero {
+  height: 90vh;
+  background: linear-gradient(rgba(14, 77, 56, 0.4), rgba(14, 77, 56, 0.4)),
+    url("../images/hero_banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.btn-gold {
+  background-color: var(--accent-gold);
+  color: var(--primary-green);
+  padding: 12px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 2px;
+  transition: background 0.3s;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn-gold:hover {
+  background-color: #fff;
+}
+
+/* =========================================
+   4. SHARED COMPONENTS (Headers, Footers)
+   ========================================= */
+.page-header {
+  background-color: var(--primary-green);
+  color: #fff;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.page-header h1 {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  color: var(--primary-green);
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 4rem 0 2rem;
+}
+
+footer {
+  background-color: var(--primary-green);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 50px;
+  border-top: 4px solid var(--accent-gold);
+}
+
+/* =========================================
+   5. ATTRACTIONS & TRANSPORT (The Grid)
+   ========================================= */
+.content-section {
+  padding: 2rem 0;
+}
+
+.attractions-grid,
+.transport-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.luxury-card,
+.transport-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Ensures content stacks nicely */
+}
+
+.luxury-card:hover,
+.transport-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-gold);
+}
+
+.card-image {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  background-color: #ddd;
+}
+
+.card-content {
+  padding: 2rem;
+  flex-grow: 1; /* Pushes button to bottom if text is short */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3,
+.transport-card h3 {
+  font-family: var(--font-heading);
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.location-tag {
+  color: #888;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* FIX: Solid Gold Button Style for Attractions */
+.price-tag {
+  display: inline-block;
+  margin-top: auto; /* Pushes to bottom of card */
+  padding: 12px 0;
+  background-color: var(--accent-gold);
+  color: var(--primary-green);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 2px;
+  width: 100%; /* Full width button */
+}
+
+/* Transport Card Specifics */
+.transport-card {
+  background-color: var(--bg-cream);
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.icon-box {
+  font-size: 3rem;
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+}
+
+.transport-card ul {
+  list-style: none;
+  text-align: left;
+  margin-top: 1.5rem;
+  padding-left: 1rem;
+}
+
+.transport-card li {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.transport-card i.fa-check {
+  color: var(--accent-gold);
+  margin-right: 10px;
+}
+
+/* =========================================
+   6. ITINERARY TIMELINE
+   ========================================= */
+.itinerary-section {
+  background-color: #fff;
+  padding: 3rem 5%;
+  margin-top: 4rem;
+}
+
+.itinerary-intro {
+  text-align: center;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  border-left: 2px solid var(--accent-gold);
+  padding-left: 2rem;
+}
+
+.timeline-item {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: var(--primary-green);
+  border: 2px solid var(--accent-gold);
+  border-radius: 50%;
+  position: absolute;
+  left: -2.6rem;
+  top: 5px;
+}
+
+.timeline-date {
+  font-family: var(--font-heading);
+  color: var(--accent-gold);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.timeline-content h3 {
+  color: var(--text-charcoal);
+}
+
+/* =========================================
+   7. EVENTS TABLE
+   ========================================= */
+.events-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow-x: auto;
+  padding: 0 5%;
+}
+
+.luxury-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.luxury-table th {
+  background-color: var(--primary-green);
+  color: var(--accent-gold);
+  padding: 1.5rem;
+  text-align: left;
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+}
+
+.luxury-table td {
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+  color: var(--text-charcoal);
+  vertical-align: middle; /* Aligns content center vertically */
+}
+
+.date-col {
+  font-weight: bold;
+  color: var(--primary-green) !important;
+  white-space: nowrap;
+}
+
+.title-col {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+}
+
+/* FIX: Table Button Spacing & Wrapping */
+.ticket-badge {
+  display: inline-block;
+  background-color: var(--bg-cream);
+  border: 1px solid var(--accent-gold);
+  color: var(--primary-green);
+  padding: 8px 15px; /* More padding */
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap; /* CRITICAL: Prevents text from being cut off/wrapped */
+  border-radius: 2px;
+}
+
+/* =========================================
+   8. HISTORY PAGE (Split & Video)
+   ========================================= */
+.split-layout {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 2rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.split-text {
+  flex: 1;
+  text-align: justify;
+}
+
+.split-image {
+  flex: 1;
+}
+
+.split-image img {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 15px 15px 0px var(--accent-gold);
+}
+
+.video-section {
+  background-color: var(--text-charcoal);
+  color: var(--accent-gold);
+  text-align: center;
+  padding: 4rem 5%;
+  margin: 4rem 0;
+}
+
+.video-wrapper {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  border: 1px solid var(--accent-gold);
+  padding: 10px;
+}
+
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.culture-card {
+  background: #fff;
+  padding: 2.5rem;
+  border-top: 4px solid var(--primary-green);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.culture-card h3 {
+  color: var(--primary-green);
+  font-family: var(--font-heading);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* =========================================
+   9. CONTACT PAGE (Green Background & Watermark)
+   ========================================= */
+.watermark-section {
+  background-color: var(--primary-green);
+  position: relative;
+  overflow: hidden;
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.watermark-section::before {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 550px;
+  height: 550px;
+  background-image: url("../images/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  z-index: 1;
+  pointer-events: none;
+  filter: brightness(0) invert(1);
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  padding: 3rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  border-top: 4px solid var(--accent-gold);
+  position: relative;
+  z-index: 2;
+  border-radius: 4px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  color: var(--primary-green);
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  background-color: #fff;
+}
+
+.success-msg {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #c3e6cb;
+  text-align: center;
+}
+
+.error-msg {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #f5c6cb;
+  text-align: center;
+}
+
+/* =========================================
+   10. DARK MODE OVERRIDES
+   ========================================= */
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .luxury-card,
+body.dark-mode .transport-card,
+body.dark-mode .transport-bg,
+body.dark-mode .luxury-table,
+body.dark-mode .itinerary-section,
+body.dark-mode .culture-card,
+body.dark-mode .contact-container {
+  background-color: #0a291f;
+  border-color: var(--accent-gold);
+  color: #fff;
+}
+
+/* Dark Mode Button Text */
+body.dark-mode .timeline-content h3,
+body.dark-mode .transport-card li,
+body.dark-mode .luxury-table td {
+  color: #ddd;
+}
+
+/* Dark Mode Inputs */
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+  background-color: #051f16;
+  border-color: var(--accent-gold);
+  color: #fff;
+}
+
+body.dark-mode .form-group label {
+  color: var(--accent-gold);
+}
+
+body.dark-mode .watermark-section {
+  background-color: #051f16;
+}
+
+/* Dark Mode Attraction Buttons */
+body.dark-mode .price-tag {
+  background-color: var(--accent-gold);
+  color: #051f16;
+}
+
+/* Dark Mode Table Buttons */
+body.dark-mode .ticket-badge {
+  background-color: #051f16;
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
